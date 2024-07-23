@@ -10,9 +10,8 @@ pkgs.mkShell {
   ];
  
   shellHook = ''
-    cd godot-cpp && git submodule update --init && cd ..
-    chmod +x editor.sh
-    chmod +x game.sh
+    alias godot="godot4"
+
     echo "nix-shell initialized! :))"
   '';
 }

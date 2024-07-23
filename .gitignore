@@ -8,9 +8,6 @@ game/android/*
 android_project/*
 game/release/*
 
-# private export files
-*.cfg
-
 # binaries
 *.o
 *.obj

@@ -2,33 +2,13 @@
 import os
 import sys
 
-PROJECT_NAME = "<Project Name>"
-TARGET_PATH = f"demo/bin/{PROJECT_NAME}"
+env = SConscript("cpp/godot/SConstruct")
 
-env = SConscript("godot-cpp/SConstruct")
+env.Append(CPPPATH=["cpp/src/"])
+sources = Glob("cpp/src/*.cpp")
 
-# For reference:
-# - CCFLAGS are compilation flags shared between C and C++
-# - CFLAGS are for C-specific compilation flags
-# - CXXFLAGS are for C++-specific compilation flags
-# - CPPFLAGS are for pre-processor flags
-# - CPPDEFINES are for pre-processor defines
-# - LINKFLAGS are for linking flags
-
-# tweak this if you want to use different folders, or more folders, to store your source code in.
-env.Append(CPPPATH=["src/"])
-sources = Glob("src/*.cpp")
-
-if env["platform"] == "macos":
-    library = env.SharedLibrary(
-        "demo/bin/libgdexample.{}.{}.framework/libgdexample.{}.{}".format(
-            env["platform"], env["target"], env["platform"], env["target"]
-        ),
-        source=sources,
-    )
-else:
-    library = env.SharedLibrary(
-        "demo/bin/libgdexample{}{}".format(env["suffix"], env["SHLIBSUFFIX"]),
+library = env.SharedLibrary(
+        "main/addon/bin/addon{}{}".format(env["suffix"], env["SHLIBSUFFIX"]),
         source=sources,
     )
 
