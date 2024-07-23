@@ -2,7 +2,7 @@
 
 **Run Editor**
 ```sh
-godot -e main
+godot main/project.godot
 ```
 
 **Run Debug**
